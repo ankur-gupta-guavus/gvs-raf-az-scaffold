@@ -1,6 +1,5 @@
 # Deploy an HDInsight cluster using existing default storage account
 
-##<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgitlab.thalesdigital.io%2Fgvs-reflex%2Fguavus-reflex-scaffold%2Fraw%2Fmaster%2Fhdi-cdap%2Fazuredeploy.json" target="_blank">
 <a href="https://azuredeploy.net/" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
