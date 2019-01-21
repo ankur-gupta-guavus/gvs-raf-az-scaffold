@@ -100,8 +100,8 @@
             {
               "name": "[concat(parameters('defaultStorageAccountName'),'.blob.core.windows.net')]",
               "isDefault": true,
-              "container": "[parameters('defaultContainerName')]",
-              "key": "[parameters('defaultStorageAccountKey')]"
+              "container": "[variables('defaultContainerName')]",
+              "key": "[variables('defaultStorageAccountKey')]"
             }
           ]
         },
@@ -115,13 +115,13 @@
               },
               "osProfile": {
                 "linuxOperatingSystemProfile": {
-                  "username": "[parameters('sshUserName')]",
-                  "password": "[parameters('sshPassword')]"
+                  "username": "[variables('sshUserName')]",
+                  "password": "[variables('sshPassword')]"
                 }
               },
              "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             },
             {
@@ -133,13 +133,13 @@
               },
               "osProfile": {
                 "linuxOperatingSystemProfile": {
-                  "username": "[parameters('sshUserName')]",
-                  "password": "[parameters('sshPassword')]"
+                  "username": "[variables('sshUserName')]",
+                  "password": "[variables('sshPassword')]"
                 }
               },
              "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             },
             {
@@ -150,13 +150,13 @@
               },
               "osProfile": {
                 "linuxOperatingSystemProfile": {
-                  "username": "[parameters('sshUserName')]",
-                  "password": "[parameters('sshPassword')]"
+                  "username": "[variables('sshUserName')]",
+                  "password": "[variables('sshPassword')]"
                 }
               },
              "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             }
           ]
