@@ -1,0 +1,4 @@
+[cdapnode]
+localhost ansible_connection=local
+
+[zookeeper-nodes]
