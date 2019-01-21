@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+  "type": "QuickStart",
+  "itemDisplayName": "Deploy Guavus RAF CDAP cluster",
+  "description": "This template facilitates creation of Guavus RAF CDAP cluster within an Azure Subscription. As part of CDAP cluster an HDInsight cluster is also created as its a dependancy for CDAP to run.",
+  "summary": "Deploy Guavus RAF CDAP cluster",
+  "dateUpdated": "2019-01-03"
+}
+
+
