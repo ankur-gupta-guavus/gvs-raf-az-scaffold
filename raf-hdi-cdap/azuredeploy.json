@@ -62,8 +62,8 @@
     "subnetName": "[concat(variables('vnetName'),'reflex')]",
     "defaultStorageAccountKey": {
       "type": "string",
-      "value": "[listKeys(parameters('defaultStorageAccountName'),'2018-07-01').keys[0].value]",
-    }
+      "value": "[listKeys(parameters('defaultStorageAccountName'),'2018-07-01').keys[0].value]"
+    },
     "defaultContainerName": "[concat(parameters('clusterName'),'reflex-hdi-stg')]",
     "sshUserName": "guavusreflex",
     "sshPassword": "[parameters('clusterLoginPassword')]"
