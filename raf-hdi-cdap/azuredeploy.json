@@ -60,7 +60,10 @@
     "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-cdap/scripts/Cdap-install_v1.sh",
     "vnetName": "[resourceGroup().name]",
     "subnetName": "[concat(variables('vnetName'),'reflex')]",
-    "defaultStorageAccountKey": "[listKeys(parameters('defaultStorageAccountName'), '2018-02-01')]",
+    "defaultStorageAccountKey": {
+      "type": "string",
+      "value": "[listKeys(parameters('defaultStorageAccountName'),'2018-07-01').keys[0].value]",
+    }
     "defaultContainerName": "[concat(parameters('clusterName'),'reflex-hdi-stg')]",
     "sshUserName": "guavusreflex",
     "sshPassword": "[parameters('clusterLoginPassword')]"
