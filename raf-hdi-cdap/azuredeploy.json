@@ -66,6 +66,15 @@
   },
   "resources": [
     {
+      "apiVersion": "2018-04-01",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(variables('vnetName'), '/', variables('subnetName'))]",
+      "location": "[variables('location')]",
+      "properties": {
+        "addressPrefix": "[parameters('subnetCIDR')]"
+      }
+    },
+    {
       "type": "Microsoft.HDInsight/clusters",
       "name": "[parameters('clusterName')]",
       "location": "[variables('location')]",
@@ -100,7 +109,7 @@
               "name": "[concat(parameters('defaultStorageAccountName'),'.blob.core.windows.net')]",
               "isDefault": true,
               "container": "[variables('defaultContainerName')]",
-              "key": "[listKeys(parameters('defaultStorageAccountName'),'2018-07-01').keys[0].value]"
+              "key": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('defaultStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
             }
           ]
         },
