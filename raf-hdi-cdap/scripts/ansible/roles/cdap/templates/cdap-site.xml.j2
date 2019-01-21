@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+      <name>root.namespace</name>
+      <value>{{ cdap_root_namespace }}</value>
+    </property>
+    <property>
+      <name>hdfs.namespace</name>
+      <value>{{ cdap_hdfs_namespace }}</value>
+    </property>
+    <property>
+      <name>hdfs.user</name>
+      <value>{{ cdap_hdfs_user }}</value>
+    </property>
+    <property>
+      <name>kafka.seed.brokers</name>
+      <value>{{ cdap_kafka_seed_brokers }}</value>
+    </property>
+    <property>
+      <name>log.retention.duration.days</name>
+      <value>{{ cdap_log_retention_duration_days }}</value>
+    </property>
+    <property>
+      <name>zookeeper.quorum</name>
+      <value>{{ cdap_zookeeper_quorum }}</value>
+    </property>
+    <property>
+      <name>router.bind.address</name>
+      <value>{{ cdap_router_bind_address }}</value>
+    </property>
+    <property>
+      <name>router.server.address</name>
+      <value>{{ cdap_router_server_address }}</value>
+    </property>
+    <property>
+      <name>app.program.jvm.opts</name>
+      <value>-XX:MaxPermSize=128M ${twill.jvm.gc.opts} -Dhdp.version={{ hdp_version }}</value>
+    </property>
+    <property>
+      <name>dashboard.bind.port</name>
+      <value>{{ cdap_dashboard_bind_port }}</value>
+    </property>
+    <property>
+      <name>dataset.executor.container.memory.mb</name>
+      <value>{{ cdap_dataset_executor_container_memory_mb }}</value>
+    </property>
+    <property>
+      <name>explore.enabled</name>
+      <value>{{ cdap_explore_enabled }}</value>
+    </property>
+    <property>
+      <name>explore.executor.container.memory.mb</name>
+      <value>{{ cdap_explore_executor_container_memory_mb }}</value>
+    </property>
+    <property>
+      <name>http.client.read.timeout.ms</name>
+      <value>120000</value>
+    </property>
+    <property>
+      <name>kafka.server.log.dirs</name>
+      <value>{{ cdap_kafka_server_log_dirs }}</value>
+    </property>
+    <property>
+      <name>log.saver.container.memory.mb</name>
+      <value>{{ cdap_log_saver_container_memory_mb }}</value>
+    </property>
+    <property>
+      <name>master.service.memory.mb</name>
+      <value>{{ cdap_master_service_memory_mb }}</value>
+    </property>
+    <property>
+      <name>metrics.memory.mb</name>
+      <value>{{ cdap_metrics_memory_mb }}</value>
+    </property>
+    <property>
+      <name>metrics.processor.memory.mb</name>
+      <value>{{ cdap_metrics_processor_memory_mb }}</value>
+    </property>
+    <property>
+      <name>router.bind.port</name>
+      <value>{{ cdap_router_bind_port }}</value>
+    </property>
+    <property>
+      <name>stream.container.memory.mb</name>
+      <value>{{ cdap_stream_container_memory_mb }}</value>
+    </property>
+    <property>
+      <name>twill.java.reserved.memory.mb</name>
+      <value>{{ cdap_twill_java_reserved_memory_mb }}</value>
+    </property>
+</configuration>

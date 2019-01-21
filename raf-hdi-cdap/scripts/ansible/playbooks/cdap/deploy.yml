@@ -1,0 +1,15 @@
+---
+
+- name: Load Variables
+  hosts:
+    - cdapnode
+  tasks:
+    - name: Include variables
+      include_vars:
+        dir: "{{ inventory_dir }}/vars"
+
+- name: Deploy cdap
+  hosts:
+    - cdapnode
+  roles:
+    - cdap

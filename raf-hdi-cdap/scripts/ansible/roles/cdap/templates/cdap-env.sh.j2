@@ -1,0 +1,30 @@
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+if [ "$JAVA_HOME" != "" ]; then
+  JAVA_HOME=$JAVA_HOME
+else
+  echo "Error: JAVA_HOME is not set."
+  exit 1
+fi
+
+JAVA=$JAVA_HOME/bin/java
+
+export HADOOP_HOME_WARN_SUPPRESS=1
+
+# Set native libs PATH
+export JAVA_LIBRARY_PATH=${JAVA_LIBRARY_PATH}:/usr/hdp/2.6.5.0-292/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.5.0-292/hadoop/lib/native
+
+export CDAP_HOME=/opt/cdap
+export CDAP_CONF=/etc/cdap/conf
+export LOG_DIR=/var/log/cdap
+export PID_DIR=/var/run/cdap
+export AUTH_JAVA_HEAPMAX="-Xmx1024m"
+export KAFKA_JAVA_HEAPMAX="-Xmx1024m"
+export MASTER_JAVA_HEAPMAX="-Xmx1024m"
+export ROUTER_JAVA_HEAPMAX="-Xmx1024m"
+export SPARK_HOME="/usr/hdp/current/spark2-client"
+export SPARK_MAJOR_VERSION=2
+
+export OPTS="${OPTS} -Dhdp.version=${HDP_VERSION:-{{ hdp_version }}}"
+
+export TEZ_HOME="/usr/hdp/current/tez-client/"
+export TEZ_CONF_DIR="/etc/tez/conf"
