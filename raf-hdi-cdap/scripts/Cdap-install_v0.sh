@@ -18,7 +18,7 @@ sudo apt-get update
 sudo mkdir -p /opt/guavus/
 sudo apt-get -y  install git-core
 sudo git clone https://github.com/ankur-gupta-guavus/gvs-raf-az-scaffold.git /opt/guavus/
-sudo sh /opt/guavus/raf-hdi-cdap/scripts/ansible/bootstrap.sh
+sudo sh /opt/guavus/raf-hdi-cdap/ansible/bootstrap.sh
 
 export USERID=$USERID
 export PASSWD=$PASSWD
@@ -29,4 +29,4 @@ export HDP_VERSION=$HDP_VERSION
 
 ########### Trigger ansible ######################
 
-cd /opt/guavus/raf-hdi-cdap/scripts/ansible/; ansible-playbook -i inventory/reflex/hosts playbooks/cdap/deploy.yml --user $USERNAME --become --become-method sudo
+cd /opt/guavus/raf-hdi-cdap/ansible/; ansible-playbook -i inventory/reflex/hosts playbooks/cdap/deploy.yml --user $USERNAME --become --become-method sudo
