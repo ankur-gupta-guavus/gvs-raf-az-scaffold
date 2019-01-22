@@ -3,19 +3,19 @@
 generate_cdap_env() {
     echo -e "
 export JAVA_HOME=\"/usr/lib/jvm/java-8-openjdk-amd64\"
-if [ \"$JAVA_HOME\" != \"\" ]; then
-  JAVA_HOME=$JAVA_HOME
+if [ \"\$JAVA_HOME\" != \"\" ]; then
+  JAVA_HOME=\$JAVA_HOME
 else
   echo \"Error: JAVA_HOME is not set.\"
   exit 1
 fi
 
-JAVA=$JAVA_HOME/bin/java
+JAVA=\$JAVA_HOME/bin/java
 
 export HADOOP_HOME_WARN_SUPPRESS=1
 
 # Set native libs PATH
-export JAVA_LIBRARY_PATH=${JAVA_LIBRARY_PATH}:/usr/hdp/2.6.5.0-292/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.5.0-292/hadoop/lib/native
+export JAVA_LIBRARY_PATH=\${JAVA_LIBRARY_PATH}:/usr/hdp/2.6.5.0-292/hadoop/lib/native/Linux-amd64-64:/usr/hdp/2.6.5.0-292/hadoop/lib/native
 
 export CDAP_HOME=/opt/cdap
 export CDAP_CONF=/etc/cdap/conf
@@ -28,7 +28,7 @@ export ROUTER_JAVA_HEAPMAX=\"-Xmx1024m\"
 export SPARK_HOME=\"/usr/hdp/current/spark2-client\"
 export SPARK_MAJOR_VERSION=2
 
-export OPTS=\"${OPTS} -Dhdp.version=${HDP_VERSION:-${HDP_VERSION}}\"
+export OPTS=\"\${OPTS} -Dhdp.version=\${HDP_VERSION:-${HDP_VERSION}}\"
 
 export TEZ_HOME=\"/usr/hdp/current/tez-client/\"
 export TEZ_CONF_DIR=\"/etc/tez/conf\"
@@ -131,6 +131,7 @@ generate_cdap_site() {
     </property>
 </configuration>
     " > /etc/cdap/conf/cdap-site.xml
+    sed -i '1d' /etc/cdap/conf/cdap-site.xml
 }
 
 generate_cdap_security() {
@@ -173,6 +174,7 @@ generate_cdap_security() {
     </property>
 </configuration>
     " > /etc/cdap/conf/cdap-security.xml
+    sed -i '1d' /etc/cdap/conf/cdap-security.xml
 }
 
 download_cdap() {
