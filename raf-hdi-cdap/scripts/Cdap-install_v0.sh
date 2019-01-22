@@ -63,7 +63,7 @@ generate_cdap_site() {
     </property>
     <property>
       <name>zookeeper.quorum</name>
-      <value>${zkq}/cdap</value>
+      <value>${ZOOKEEPER_QUORUM}/cdap</value>
     </property>
     <property>
       <name>router.bind.address</name>
@@ -133,6 +133,47 @@ generate_cdap_site() {
     " > /etc/cdap/conf/cdap-site.xml
 }
 
+generate_cdap_security() {
+    echo -e "
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+      <name>security.server.ssl.keystore.password</name>
+      <value>somedefaultpassword</value>
+    </property>
+    <property>
+      <name>security.server.ssl.keystore.keypassword</name>
+      <value>somedefaultkeypassword</value>
+    </property>
+    <property>
+      <name>security.server.ssl.keystore.path</name>
+      <value>/etc/cdap/conf.chef/security.jks</value>
+    </property>
+    <property>
+      <name>router.ssl.keystore.password</name>
+      <value>somedefaultpassword</value>
+    </property>
+    <property>
+      <name>router.ssl.keystore.keypassword</name>
+      <value>somedefaultkeypassword</value>
+    </property>
+    <property>
+      <name>router.ssl.keystore.path</name>
+      <value>/etc/cdap/conf.chef/router.jks</value>
+    </property>
+    <property>
+      <name>dashboard.ssl.key</name>
+      <value>/etc/cdap/conf.chef/dashboard.key</value>
+    </property>
+    <property>
+      <name>dashboard.ssl.cert</name>
+      <value>/etc/cdap/conf.chef/dashboard.crt</value>
+    </property>
+</configuration>
+    " > /etc/cdap/conf/cdap-security.xml
+}
 
 download_cdap() {
     sudo curl -o /etc/apt/sources.list.d/cask.list http://repository.cask.co/ubuntu/precise/amd64/cdap/5.1/cask.list
@@ -158,6 +199,10 @@ install_cdap() {
     sudo rm -f /etc/cdap/conf /opt/cdap/kafka/lib/log4j.log4j-1.2.14.jar
     sudo mkdir -p /etc/cdap/conf
     generate_cdap_env
+    generate_cdap_site
+    generate_cdap_security
+    cp /etc/cdap/conf.dist/logback.xml /etc/cdap/conf/logback.xml
+    cp /etc/cdap/conf.dist/logback-container.xml /etc/cdap/conf/logback-container.xml
     sudo chown -R cdap:hadoop /etc/cdap/conf
 }
 
