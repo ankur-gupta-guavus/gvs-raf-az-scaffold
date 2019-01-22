@@ -50,8 +50,8 @@
     "zkNodeSize": "Standard_D3_v2",
     "edgeNodeSize": "Standard_D3_v2",
     "applicationName": "Guavus-CDAP",
-    "scriptActionUri1": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-cdap/scripts/Cdap-install_v0.sh",
-    "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-cdap/scripts/Cdap-install_v1.sh",
+    "scriptActionUri1": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-hdi-cdap/scripts/Cdap-install_v0.sh",
+    "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-hdi-cdap/scripts/Cdap-install_v1.sh",
     "defaultContainerName": "[concat(parameters('clusterName'),'reflex-hdi-stg')]",
     "sshUserName": "guavusreflex",
     "sshPassword": "[parameters('clusterLoginPassword')]"
