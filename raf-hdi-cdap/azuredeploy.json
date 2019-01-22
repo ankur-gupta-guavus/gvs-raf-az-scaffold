@@ -39,13 +39,7 @@
       "metadata": {
         "description": "Number of workerNodes."
       }
-    },
-    "subnetCIDR": {
-      "type": "string",
-      "metadata": {
-        "description": "CIDR for reflex subnet"
-      }
-    }    
+    }
   },
   "variables": {
     "location": "[resourceGroup().location]",
@@ -58,22 +52,11 @@
     "applicationName": "Guavus-CDAP",
     "scriptActionUri1": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-cdap/scripts/Cdap-install_v0.sh",
     "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-cdap/scripts/Cdap-install_v1.sh",
-    "vnetName": "[resourceGroup().name]",
-    "subnetName": "[concat(variables('vnetName'),'reflex')]",
     "defaultContainerName": "[concat(parameters('clusterName'),'reflex-hdi-stg')]",
     "sshUserName": "guavusreflex",
     "sshPassword": "[parameters('clusterLoginPassword')]"
   },
   "resources": [
-    {
-      "apiVersion": "2018-04-01",
-      "type": "Microsoft.Network/virtualNetworks/subnets",
-      "name": "[concat(variables('vnetName'), '/', variables('subnetName'))]",
-      "location": "[variables('location')]",
-      "properties": {
-        "addressPrefix": "[parameters('subnetCIDR')]"
-      }
-    },
     {
       "type": "Microsoft.HDInsight/clusters",
       "name": "[parameters('clusterName')]",
@@ -126,10 +109,6 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              },
-             "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             },
             {
@@ -144,10 +123,6 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              },
-             "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             },
             {
@@ -161,10 +136,6 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              },
-             "virtualNetworkProfile": {
-                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'))]",
-                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',variables('vnetName'),'/subnets/',variables('subnetName'))]"
               }
             }
           ]
