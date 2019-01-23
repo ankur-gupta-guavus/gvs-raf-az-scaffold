@@ -20,6 +20,18 @@
         "description": "The short name of the default Azure storage account name. This account needs to be secure transfer enabled."
       }
     },
+    "vnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The short name of the virtual Network to be used."
+      }
+    },
+     "subnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The short name of the subnet inside virtual Network to be used."
+      }
+    },       
     "workerNodeSize": {
       "type": "string",
       "defaultValue": "Standard_D3_v2",
@@ -120,7 +132,11 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+              }             
             },
             {
               "name": "workernode",
@@ -134,6 +150,10 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
               }
             },
             {
@@ -147,7 +167,11 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+              }              
             }
           ]
         }
