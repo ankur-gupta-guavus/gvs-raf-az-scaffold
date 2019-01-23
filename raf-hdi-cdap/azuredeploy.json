@@ -20,6 +20,18 @@
         "description": "The short name of the default Azure storage account name. This account needs to be secure transfer enabled."
       }
     },
+    "vnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The short name of the virtual Network to be used."
+      }
+    },
+    "subnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The short name of the subnet inside virtual Network to be used."
+      }
+    },       
     "workerNodeSize": {
       "type": "string",
       "defaultValue": "Standard_D3_v2",
@@ -50,13 +62,24 @@
     "zkNodeSize": "Standard_D3_v2",
     "edgeNodeSize": "Standard_D3_v2",
     "applicationName": "Guavus-CDAP",
-    "scriptActionUri1": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-hdi-cdap/scripts/Cdap-install_v0.sh",
-    "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/master/raf-hdi-cdap/scripts/Cdap-install_v1.sh",
+    "scriptActionUri1": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/feature/move-provisioning-ansible-to-bash/raf-hdi-cdap/scripts/Cdap-install_v0.sh",
+    "scriptActionUri2": "https://raw.githubusercontent.com/ankur-gupta-guavus/gvs-raf-az-scaffold/feature/move-provisioning-ansible-to-bash/raf-hdi-cdap/scripts/Cdap-install_v1.sh",
     "defaultContainerName": "[concat(parameters('clusterName'),'reflex-hdi-stg')]",
     "sshUserName": "guavusreflex",
     "sshPassword": "[parameters('clusterLoginPassword')]"
   },
   "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('defaultStorageAccountName')]",
+      "location": "[variables('location')]",
+      "apiVersion": "2018-07-01",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": {}
+    },
     {
       "type": "Microsoft.HDInsight/clusters",
       "name": "[parameters('clusterName')]",
@@ -109,7 +132,11 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+              }             
             },
             {
               "name": "workernode",
@@ -123,6 +150,10 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
               }
             },
             {
@@ -136,7 +167,11 @@
                   "username": "[variables('sshUserName')]",
                   "password": "[variables('sshPassword')]"
                 }
-              }
+              },
+              "virtualNetworkProfile": {
+                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'))]",
+                "subnet": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('vnetName'),'/subnets/',parameters('subnetName'))]"
+              }              
             }
           ]
         }
@@ -191,6 +226,10 @@
     }
   ],
   "outputs": {
+    "storageAccountName": {
+      "type": "string",
+      "value": "[variables('storageAccountName')]"
+    },
     "cluster": {
       "type": "object",
       "value": "[reference(resourceId('Microsoft.HDInsight/clusters',parameters('clusterName')))]"
